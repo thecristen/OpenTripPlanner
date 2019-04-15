@@ -116,19 +116,9 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
         return wheelchairTraversalTime != MISSING_VALUE;
     }
 
-    public boolean isTraversalTimeSet() {
-        return traversalTime != MISSING_VALUE;
-    }
-
     public void clearWheelchairTraversalTime() {
         this.wheelchairTraversalTime = MISSING_VALUE;
     }
-
-    public boolean isAccessible() {
-        if (stairCount == MISSING_VALUE) return wheelchairTraversalTime > 0;
-        else return stairCount == 0;
-    }
-
 
     @Override
     public String toString() {
