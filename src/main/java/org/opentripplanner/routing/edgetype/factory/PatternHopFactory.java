@@ -895,11 +895,11 @@ public class PatternHopFactory {
         for (Pathway pathway : transitService.getAllPathways()) {
             Vertex fromVertex = context.stationStopNodes.get(pathway.getFromStop());
             Vertex toVertex = context.stationStopNodes.get(pathway.getToStop());
-            if (pathway.isWheelchairTraversalTimeSet()) {
-                new PathwayEdge(fromVertex, toVertex, pathway.getTraversalTime(), pathway.getWheelchairTraversalTime());
-            } else {
-                new PathwayEdge(fromVertex, toVertex, pathway.getTraversalTime());
-            }
+
+            PathwayEdge newEdge = new PathwayEdge(fromVertex, toVertex);
+            newEdge.setTraversalTime(pathway.calculateTraversalTime());
+            newEdge.setWheelchairTraversalTime(pathway.calculateWheelchairTraversalTime());
+            newEdge.setDistance(pathway.getLength());
         }
     }
 
