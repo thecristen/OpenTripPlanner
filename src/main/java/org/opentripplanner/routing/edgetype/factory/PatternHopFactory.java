@@ -907,14 +907,14 @@ public class PatternHopFactory {
 
     private void loadPathways(Graph graph) {
         for (Pathway pathway : transitService.getAllPathways()) {
-            if (pathway.getTraversalTime() == Pathway.MISSING_VALUE) continue;
+            if (pathway.calculateTraversalTime() == Pathway.MISSING_VALUE) continue;
             Vertex fromVertex = context.stationStopNodes.get(pathway.getFromStop());
             Vertex toVertex = context.stationStopNodes.get(pathway.getToStop());
-            if (pathway.isWheelchairTraversalTimeSet()) {
-                new PathwayEdge(fromVertex, toVertex, pathway.getTraversalTime(), pathway.getWheelchairTraversalTime());
-            } else {
-                new PathwayEdge(fromVertex, toVertex, pathway.getTraversalTime());
-            }
+
+            PathwayEdge newEdge = new PathwayEdge(fromVertex, toVertex);
+            newEdge.setTraversalTime(pathway.calculateTraversalTime());
+            newEdge.setWheelchairTraversalTime(pathway.calculateWheelchairTraversalTime());
+            newEdge.setDistance(pathway.getLength());
         }
     }
 

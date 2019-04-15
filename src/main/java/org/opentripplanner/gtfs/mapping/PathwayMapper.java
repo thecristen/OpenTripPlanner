@@ -36,6 +36,9 @@ class PathwayMapper {
         lhs.setToStop(stopMapper.map(rhs.getToStop()));
         lhs.setTraversalTime(rhs.getTraversalTime());
         lhs.setWheelchairTraversalTime(rhs.getWheelchairTraversalTime());
+        lhs.setLength(rhs.getLength());
+        lhs.setWheelchairLength(rhs.getWheelchairLength());
+        lhs.setStairCount(rhs.getStairCount());
 
         return lhs;
     }
