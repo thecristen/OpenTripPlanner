@@ -900,6 +900,7 @@ public class PatternHopFactory {
             newEdge.setTraversalTime(pathway.calculateTraversalTime());
             newEdge.setWheelchairTraversalTime(pathway.calculateWheelchairTraversalTime());
             newEdge.setDistance(pathway.getLength());
+            newEdge.setName(pathway.getSignpostedAs());
         }
     }
 

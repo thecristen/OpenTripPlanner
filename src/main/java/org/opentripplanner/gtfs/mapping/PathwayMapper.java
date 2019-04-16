@@ -39,6 +39,7 @@ class PathwayMapper {
         lhs.setLength(rhs.getLength());
         lhs.setWheelchairLength(rhs.getWheelchairLength());
         lhs.setStairCount(rhs.getStairCount());
+        lhs.setSignpostedAs(rhs.getSignpostedAs());
 
         return lhs;
     }

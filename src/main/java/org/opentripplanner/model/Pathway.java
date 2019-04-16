@@ -33,6 +33,8 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     private int stairCount = MISSING_VALUE;
 
+    private String signpostedAs;
+
     @Override
     public FeedScopedId getId() {
         return id;
@@ -118,6 +120,14 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     public void clearWheelchairTraversalTime() {
         this.wheelchairTraversalTime = MISSING_VALUE;
+    }
+
+    public String getSignpostedAs() {
+        return signpostedAs;
+    }
+
+    public void setSignpostedAs(String signpostedAs) {
+        this.signpostedAs = signpostedAs;
     }
 
     @Override

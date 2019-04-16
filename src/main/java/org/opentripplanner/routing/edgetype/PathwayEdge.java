@@ -22,6 +22,8 @@ public class PathwayEdge extends Edge {
 
     private double distance = -1;
 
+    private String name;
+
     public PathwayEdge(Vertex fromv, Vertex tov) {
         super(fromv, tov);
     }
@@ -58,8 +60,12 @@ public class PathwayEdge extends Edge {
         return GeometryUtils.getGeometryFactory().createLineString(coordinates);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
-        return "pathway";
+        return name;
     }
 
     @Override
