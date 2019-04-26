@@ -101,8 +101,7 @@ public class TransferEdge extends Edge {
 
     @Override
     public String toString() {
-        return "TransferEdge(" +
-                getFromVertex() + " to " + getToVertex() + ")";
+        return "TransferEdge(" + getId() + ", " + getFromVertex() + " -> " + getToVertex()
+                + " length=" + this.getDistance() + ")";
     }
-
 }

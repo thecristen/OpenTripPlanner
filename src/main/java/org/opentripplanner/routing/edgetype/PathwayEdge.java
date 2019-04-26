@@ -96,4 +96,9 @@ public class PathwayEdge extends Edge {
         s1.setBackMode(getMode());
         return s1.makeState();
     }
+
+    public String toString() {
+        return "PathwayEdge(" + getId() + ", " + name + ", " + fromv + " -> " + tov
+                + " length=" + this.getDistance() + ")";
+    }
 }
