@@ -429,7 +429,7 @@ public class SimpleStreetSplitter {
     private void makeLinkEdges(Vertex from, StreetVertex to) {
         if (from instanceof TemporaryStreetLocation) {
             makeTemporaryEdges((TemporaryStreetLocation) from, to);
-        } else if (from instanceof TransitStop) {
+        } else if (from instanceof TransitStop && ((TransitStop) from).isStreetLinkable()) {
             makeTransitLinkEdges((TransitStop) from, to);
         } else if (from instanceof BikeRentalStationVertex) {
             makeBikeRentalLinkEdges((BikeRentalStationVertex) from, to);

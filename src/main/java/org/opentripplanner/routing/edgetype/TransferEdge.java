@@ -96,4 +96,8 @@ public class TransferEdge extends Edge {
         return wheelchairAccessible;
     }
 
+    public String toString() {
+        return "TransferEdge(" + getId() + ", " + fromv + " -> " + tov
+                + " length=" + this.getDistance() + ")";
+    }
 }

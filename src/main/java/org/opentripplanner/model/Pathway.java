@@ -7,6 +7,10 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     private static final int MISSING_VALUE = -999;
 
+    private static final int DEFAULT_TRAVERSAL_TIME = 5;
+
+    private static final int DEFAULT_WHEELCHAIR_TRAVERSAL_TIME = 10;
+
     private static final float WALK_SPEED_FEET_SECONDS = 4.59f;
 
     private static final float WHEELCHAIR_SPEED_FEET_SECONDS = 3.5481f;
@@ -77,7 +81,7 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
         if (traversalTime != MISSING_VALUE) return traversalTime;
         else if (stairCount != MISSING_VALUE) return (int)(stairCount / (stairCount > 0 ? STAIRS_UP_SPEED : STAIRS_DOWN_SPEED));
         else if (length > 0) return (int)(length / WALK_SPEED_FEET_SECONDS);
-        else return MISSING_VALUE;
+        else return DEFAULT_TRAVERSAL_TIME;
     }
 
     public void setWheelchairTraversalTime(int wheelchairTraversalTime) {
@@ -87,7 +91,7 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
     public int calculateWheelchairTraversalTime() {
         if (wheelchairTraversalTime != MISSING_VALUE) return wheelchairTraversalTime;
         else if (wheelchairLength > 0) return (int)(wheelchairLength / WHEELCHAIR_SPEED_FEET_SECONDS);
-        else return MISSING_VALUE;
+        else return DEFAULT_WHEELCHAIR_TRAVERSAL_TIME;
     }
 
     public float getLength() {
