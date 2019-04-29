@@ -11,9 +11,9 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     private static final int DEFAULT_WHEELCHAIR_TRAVERSAL_TIME = 10;
 
-    private static final float WALK_SPEED_FEET_SECONDS = 4.59f;
+    private static final float WALK_SPEED_METERS_PER_SECONDS = 1.4f;
 
-    private static final float WHEELCHAIR_SPEED_FEET_SECONDS = 3.5481f;
+    private static final float WHEELCHAIR_SPEED_METERS_PER_SECONDS = 1.08f;
 
     private static final float STAIRS_UP_SPEED = 1.6404f;
 
@@ -81,7 +81,7 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
         if (pathwayMode == 5) return MISSING_VALUE; // offer elevators for accessible trips only
         if (traversalTime != MISSING_VALUE) return traversalTime;
         if (stairCount != MISSING_VALUE) return (int)(Math.abs(stairCount) / (stairCount > 0 ? STAIRS_UP_SPEED : STAIRS_DOWN_SPEED));
-        if (length > 0) return (int)(length / WALK_SPEED_FEET_SECONDS);
+        if (length > 0) return (int)(length / WALK_SPEED_METERS_PER_SECONDS);
         return DEFAULT_TRAVERSAL_TIME;
     }
 
@@ -91,8 +91,9 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     public int calculateWheelchairTraversalTime() {
         if (wheelchairTraversalTime != MISSING_VALUE) return wheelchairTraversalTime;
-        if (wheelchairLength > 0) return (int)(wheelchairLength / WHEELCHAIR_SPEED_FEET_SECONDS);
-        return DEFAULT_WHEELCHAIR_TRAVERSAL_TIME;
+        if (wheelchairLength > 0) return (int)(wheelchairLength / WHEELCHAIR_SPEED_METERS_PER_SECONDS);
+        if (pathwayMode == 6 || pathwayMode == 7) return DEFAULT_WHEELCHAIR_TRAVERSAL_TIME; // entering/exiting fare control
+        return MISSING_VALUE; // consider pathway to be inaccessible if we don't know for sure that it's accessible
     }
 
     public float getLength() {
