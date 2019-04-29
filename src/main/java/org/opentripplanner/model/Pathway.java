@@ -78,10 +78,11 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
     }
 
     public int calculateTraversalTime() {
+        if (pathwayMode == 5) return MISSING_VALUE; // offer elevators for accessible trips only
         if (traversalTime != MISSING_VALUE) return traversalTime;
-        else if (stairCount != MISSING_VALUE) return (int)(stairCount / (stairCount > 0 ? STAIRS_UP_SPEED : STAIRS_DOWN_SPEED));
-        else if (length > 0) return (int)(length / WALK_SPEED_FEET_SECONDS);
-        else return DEFAULT_TRAVERSAL_TIME;
+        if (stairCount != MISSING_VALUE) return (int)(Math.abs(stairCount) / (stairCount > 0 ? STAIRS_UP_SPEED : STAIRS_DOWN_SPEED));
+        if (length > 0) return (int)(length / WALK_SPEED_FEET_SECONDS);
+        return DEFAULT_TRAVERSAL_TIME;
     }
 
     public void setWheelchairTraversalTime(int wheelchairTraversalTime) {
@@ -90,8 +91,8 @@ public final class Pathway extends IdentityBean<FeedScopedId> {
 
     public int calculateWheelchairTraversalTime() {
         if (wheelchairTraversalTime != MISSING_VALUE) return wheelchairTraversalTime;
-        else if (wheelchairLength > 0) return (int)(wheelchairLength / WHEELCHAIR_SPEED_FEET_SECONDS);
-        else return DEFAULT_WHEELCHAIR_TRAVERSAL_TIME;
+        if (wheelchairLength > 0) return (int)(wheelchairLength / WHEELCHAIR_SPEED_FEET_SECONDS);
+        return DEFAULT_WHEELCHAIR_TRAVERSAL_TIME;
     }
 
     public float getLength() {
