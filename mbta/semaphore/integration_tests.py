@@ -122,7 +122,7 @@ def process_plan(plan):
         elif isinstance(json, dict):
             result = {}
             for key, value in json.items():
-                if key in ["fare", "zoneId"]:
+                if key in ["fare", "zoneId", "tripBlockId"]:
                     pass
                 elif key in ["stopId", "routeId", "tripId"]:
                     value = re.sub(r"(\w+:temp_0)\.\d+", r"\1-random", value)
