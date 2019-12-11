@@ -877,12 +877,13 @@ public abstract class GraphPathToTripPlanConverter {
             }
 
             String streetName = edge.getName(requestedLocale);
-            int idx = streetName.indexOf('(');
-            String streetNameNoParens;
-            if (idx > 0)
-                streetNameNoParens = streetName.substring(0, idx - 1);
-            else
-                streetNameNoParens = streetName;
+            String streetNameNoParens = streetName;
+            if (streetName != null) {
+                int idx = streetName.indexOf('(');
+                if (idx > 0) {
+                    streetNameNoParens = streetName.substring(0, idx - 1);
+                }
+            }
 
             if (step == null) {
                 // first step
@@ -923,7 +924,7 @@ public abstract class GraphPathToTripPlanConverter {
                     // and use one-based exit numbering
                     roundaboutExit = 1;
                     roundaboutPreviousStreet = backState.getBackEdge().getName(requestedLocale);
-                    idx = roundaboutPreviousStreet.indexOf('(');
+                    int idx = roundaboutPreviousStreet.indexOf('(');
                     if (idx > 0)
                         roundaboutPreviousStreet = roundaboutPreviousStreet.substring(0, idx - 1);
                 }
@@ -1031,7 +1032,8 @@ public abstract class GraphPathToTripPlanConverter {
                     WalkStep lastStep = steps.get(last);
 
                     if (twoBack.distance < MAX_ZAG_DISTANCE
-                            && lastStep.streetNameNoParens().equals(threeBack.streetNameNoParens())) {
+			&& lastStep.streetNameNoParens() != null
+                        && lastStep.streetNameNoParens().equals(threeBack.streetNameNoParens())) {
                         
                         if (((lastStep.relativeDirection == RelativeDirection.RIGHT || 
                                 lastStep.relativeDirection == RelativeDirection.HARD_RIGHT) &&
