@@ -42,10 +42,10 @@ If you want to try out the synthetic data in that directory for Austin, Texas, y
 If you had a directory tree rooted at `~/otp` with subdirectory `~/otp/graphs/austin` containing an OSM PBF file for the streets and a GTFS ZIP file with transit data, and another subdirectory `~/otp/pointsets` containing a PointSet CSV file named `destinations.csv`, you could perform accessibility calculations as follows:
 
 First, build an OpenTripPlanner graph from the OSM and GTFS inputs:
-`java -Xmx4G -jar otp-1.4.0-shaded.jar --build ~/otp/graphs/austin`
+`java -Xmx4G -jar otp-1.5.0-shaded.jar --build ~/otp/graphs/austin`
 
 Then start the OpenTripPlanner server:
-`java -Xmx4G -jar otp-1.4.0-shaded.jar --graphs ~/otp/graphs --router austin --server --analyst --pointSets ~/otp/pointsets`
+`java -Xmx4G -jar otp-1.5.0-shaded.jar --graphs ~/otp/graphs --router austin --server --analyst --pointSets ~/otp/pointsets`
 
 The OpenTripPlanner server should then be available at http://localhost:8080/index.html. The `--analyst` switch enables the HTTP endpoints that calculate travel time surfaces, and the `--pointSet` parameter tells OTP where to look to load any pointsets referenced in those API requests.
 

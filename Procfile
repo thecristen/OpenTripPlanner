@@ -1,1 +1,1 @@
-web: java -Xmx6G -jar otp-1.4.0-SNAPSHOT-shaded.jar --basePath var/ --verbose --router mbta --server --port 5000
+web: java -Xmx6G -jar otp-1.5.0-SNAPSHOT-shaded.jar --basePath var/ --verbose --router mbta --server --port 5000
