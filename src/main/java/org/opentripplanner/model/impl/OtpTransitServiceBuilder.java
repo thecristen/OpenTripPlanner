@@ -1,7 +1,6 @@
 package org.opentripplanner.model.impl;
 
 import org.opentripplanner.model.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

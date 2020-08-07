@@ -154,6 +154,14 @@ public class TransitBoardAlight extends TablePatternEdge implements OnboardEdge 
             }
         }
 
+        // if eligibility-restricted services are disallowed, check this route. Only supports 0/1 values.
+        if (!options.flexUseEligibilityServices) {
+            Route route = getPattern().route;
+            if (route.hasEligibilityRestricted() && route.getEligibilityRestricted() == 1) {
+                return null;
+            }
+        }
+
         /*
          * Determine whether we are going onto or off of transit. Entering and leaving transit is
          * not the same thing as boarding and alighting. When arriveBy == true, we are entering
@@ -318,7 +326,7 @@ public class TransitBoardAlight extends TablePatternEdge implements OnboardEdge 
                 wait_cost *= options.waitReluctance;
             }
 
-            long preferences_penalty = options.preferencesPenaltyForRoute(getPattern().route);
+           long preferences_penalty = options.preferencesPenaltyForRoute(getPattern().route);
 
             /* Compute penalty for non-preferred transfers. */
             int transferPenalty = 0;

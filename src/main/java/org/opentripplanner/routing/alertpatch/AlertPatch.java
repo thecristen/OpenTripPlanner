@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.google.transit.realtime.GtfsRealtime;
 import org.opentripplanner.model.*;
+
 import org.opentripplanner.api.adapters.AgencyAndIdAdapter;
 import org.opentripplanner.routing.core.State;
 import org.opentripplanner.routing.edgetype.PatternDwell;
@@ -99,6 +100,7 @@ public class AlertPatch implements Serializable {
         return serviceAffected() && activities.contains("EXIT");
     }
 
+    @XmlElement
     public String getId() {
         return id;
     }

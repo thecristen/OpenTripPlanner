@@ -481,7 +481,7 @@ public class RoutingRequest implements Cloneable, Serializable {
      * they require a reservation in order to be used. Such services will only be used if this
      * parameter is true.
      */
-    public boolean flexUseReservationServices = false;
+    public boolean flexUseReservationServices = true;
 
     /**
      * Whether to use eligibility-based services. This parameter only applies to GTFS-Flex
@@ -599,7 +599,7 @@ public class RoutingRequest implements Cloneable, Serializable {
      * hops, in order to reduce the amount of hops created when they redundant with regular
      * service.
      */
-    public int flexMinPartialHopLength = 50;
+    public int flexMinPartialHopLength = 400;
 
     /** Saves split edge which can be split on origin/destination search
      *
