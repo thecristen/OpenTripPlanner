@@ -1,0 +1,27 @@
+name: Deploy to dev
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy-dev:
+    name: Deploy master to dev server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+      - name: Setup
+        run: mbta/semaphore/setup.sh
+      - name: Build
+        run: mbta/semaphore/build.sh
+      - name: Deploy
+        run: mbta/semaphore/deploy.sh
+      - name: Run integration tests
+        run: mbta/semaphore/integration_tests.sh
