@@ -14,5 +14,23 @@
       <url>http://nexus.onebusaway.org/content/groups/public/</url>
       <blocked>false</blocked>
     </mirror>
+    <mirror>
+      <id>obaweb</id>
+      <mirrorOf>obaweb</mirrorOf>
+      <url>http://repo.obaweb.org:8080/archiva/repository/releases/</url>
+      <blocked>false</blocked>
+    </mirror>
+    <mirror>
+      <id>releases.developer.onebusaway.org</id>
+      <mirrorOf>releases.developer.onebusaway.org</mirrorOf>
+      <url>http://developer.onebusaway.org/maven/repository/</url>
+      <blocked>false</blocked>
+    </mirror>
+    <mirror>
+      <id>snapshots.developer.onebusaway.org</id>
+      <mirrorOf>snapshots.developer.onebusaway.org</mirrorOf>
+      <url>http://developer.onebusaway.org/maven/snapshot-repository/</url>
+      <blocked>false</blocked>
+    </mirror>
   </mirrors>
 </settings>
