@@ -4,14 +4,14 @@
   <mirrors>
     <mirror>
       <id>onebusaway-releases</id>
-      <mirrorOf>external:http:*</mirrorOf>
-      <url>http://nexus.onebusaway.org/content/repositories/releases</url>
+      <mirrorOf>onebusaway-releases</mirrorOf>
+      <url>http://nexus.onebusaway.org/content/repositories/releases/</url>
       <blocked>false</blocked>
     </mirror>
     <mirror>
       <id>public.onebusaway.org</id>
-      <mirrorOf>external:http:*</mirrorOf>
-      <url>http://nexus.onebusaway.org/content/groups/public</url>
+      <mirrorOf>public.onebusaway.org</mirrorOf>
+      <url>http://nexus.onebusaway.org/content/groups/public/</url>
       <blocked>false</blocked>
     </mirror>
   </mirrors>
