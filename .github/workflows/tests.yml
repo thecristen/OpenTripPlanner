@@ -28,6 +28,8 @@ jobs:
           repository: mbta/onebusaway-gtfs-modules
           path: ${{ github.workspace }}/onebusaway-gtfs-modules
           fetch-depth: 1
+          
+      - run: find .
       
       - name: Install onebusaway-gtfs-modules
         run: |
