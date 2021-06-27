@@ -29,7 +29,7 @@ jobs:
       
       - name: Install onebusaway-gtfs-modules
         run: |
-          mvn -Dmaven.repo.local=~/.m2 clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true
+          mvn clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true
         working-directory: ${{ github.workspace }}/onebusaway-gtfs-modules
      
       - name: Install OTP
