@@ -10,7 +10,6 @@ jobs:
     name: Run OTP tests
     runs-on: ubuntu-latest
     steps:
-      - name: Add custom settings
       - uses: s4u/maven-settings-action@v2.4.0
         with:
           mirrors: '[{"id": "onebusaway-releases", "mirrorOf": "onebusaway-releases", "url": "http://nexus.onebusaway.org/content/repositories/releases/": "blocked": "false"}, {"id": "public.onebusaway.org", "mirrorOf": "public.onebusaway.org", "url": "http://nexus.onebusaway.org/content/groups/public/": "blocked": "false"}, ]'
