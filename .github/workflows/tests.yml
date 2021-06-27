@@ -16,9 +16,7 @@ jobs:
         with:
           repository: thecristen/opentripplanner
           path: ${{ github.workspace }}/OTP
-          
-      - run: ls ${{ github.workspace }}/OTP/mbta/semaphore
-          
+
       - uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
@@ -30,18 +28,11 @@ jobs:
           repository: mbta/onebusaway-gtfs-modules
           path: ${{ github.workspace }}/onebusaway-gtfs-modules
           fetch-depth: 1
-          
-      - run: find .
-      
+
       - name: Install onebusaway-gtfs-modules
         run: |
           mvn clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true -s $SETTINGS_PATH
         working-directory: ${{ github.workspace }}/onebusaway-gtfs-modules
-     
-      - name: Install OTP
-        run: |
-          mvn clean install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -s $SETTINGS_PATH
-        working-directory: ${{ github.workspace }}/OTP
 
       - name: Run OTP tests
         run: |
