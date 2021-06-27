@@ -1,0 +1,43 @@
+name: Run Tests
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  tests:
+    name: Run OTP tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add custom settings
+      - uses: s4u/maven-settings-action@v2.4.0
+        with:
+          mirrors: '[{"id": "onebusaway-releases", "mirrorOf": "onebusaway-releases", "url": "http://nexus.onebusaway.org/content/repositories/releases/": "blocked": "false"}, {"id": "public.onebusaway.org", "mirrorOf": "public.onebusaway.org", "url": "http://nexus.onebusaway.org/content/groups/public/": "blocked": "false"}, ]'
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 8
+
+      - uses: actions/checkout@v2
+        with:
+          repository: mbta/opentripplanner
+          path: ${{ github.workspace }}/OTP
+      
+      - uses: actions/checkout@v2
+        with:
+          repository: mbta/onebusaway-gtfs-modules
+          path: ${{ github.workspace }}/onebusaway-gtfs-modules
+          fetch-depth: 1
+
+      - name: Install onebusaway-gtfs-modules
+        run: |
+          pushd ${{ github.workspace }}/onebusaway-gtfs-modules
+          mvn clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true
+          popd
+      
+      - name: Run OTP tests
+        run: |
+          mvn clean test -Dgpg.skip -Dmaven.javadoc.skip=true
+        working-directory: ${{ github.workspace }}/OTP
