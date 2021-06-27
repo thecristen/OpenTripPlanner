@@ -10,7 +10,7 @@ jobs:
     name: Run OTP tests
     runs-on: ubuntu-latest
     env:
-      SETTINGS_PATH: ${{ github.workspace }}/OTP/.github/workflows/custom-settings.xml
+      SETTINGS_PATH: ${{ github.workspace }}/OTP/mbta/semaphore/custom-settings.xml
     steps:
       - uses: actions/checkout@v2
         with:
