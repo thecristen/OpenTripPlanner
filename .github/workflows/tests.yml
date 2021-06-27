@@ -14,8 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: mbta/opentripplanner
+          repository: thecristen/opentripplanner
           path: ${{ github.workspace }}/OTP
+          
+      - run: ls ${{ github.workspace }}/OTP/mbta/semaphore
           
       - uses: actions/setup-java@v2
         with:
