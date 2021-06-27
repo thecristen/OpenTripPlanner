@@ -30,18 +30,17 @@ jobs:
           path: ${{ github.workspace }}/onebusaway-gtfs-modules
           fetch-depth: 1
       
-      - name: Install OTP
-        run: |
-          mvn clean install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
-        working-directory: ${{ github.workspace }}/OTP
-
       - name: Install onebusaway-gtfs-modules
         run: |
-          pushd ${{ github.workspace }}/onebusaway-gtfs-modules
-          mvn clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true
-          popd
-      
+          mvn -Dmaven.repo.local=~/.m2 clean install -Dmaven.test.skip=true -Dgpg.skip -Dmaven.javadoc.skip=true -Dlicense.skip=true
+        working-directory: ${{ github.workspace }}/onebusaway-gtfs-modules
+     
+      - name: Install OTP
+        run: |
+          mvn -Dmaven.repo.local=~/.m2 clean install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+        working-directory: ${{ github.workspace }}/OTP
+
       - name: Run OTP tests
         run: |
-          mvn test -Dgpg.skip -Dmaven.javadoc.skip=true
+          mvn -Dmaven.repo.local=~/.m2 test -Dgpg.skip -Dmaven.javadoc.skip=true
         working-directory: ${{ github.workspace }}/OTP
