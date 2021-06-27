@@ -29,6 +29,11 @@ jobs:
           repository: mbta/onebusaway-gtfs-modules
           path: ${{ github.workspace }}/onebusaway-gtfs-modules
           fetch-depth: 1
+      
+      - name: Install OTP
+        run: |
+          mvn clean install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.test.skip=true
+        working-directory: ${{ github.workspace }}/OTP
 
       - name: Install onebusaway-gtfs-modules
         run: |
@@ -38,5 +43,5 @@ jobs:
       
       - name: Run OTP tests
         run: |
-          mvn clean test -Dgpg.skip -Dmaven.javadoc.skip=true
+          mvn test -Dgpg.skip -Dmaven.javadoc.skip=true
         working-directory: ${{ github.workspace }}/OTP
