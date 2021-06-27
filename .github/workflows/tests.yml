@@ -21,7 +21,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 8
-          settings-path: $SETTINGS_PATH
+          settings-path: ${{ github.workspace }}/OTP/mbta/semaphore
       
       - uses: actions/checkout@v2
         with:
